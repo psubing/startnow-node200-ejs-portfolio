@@ -4,9 +4,7 @@
   "description": "My personal portfolio",
   "main": "index.js",
   "scripts": {
-    "test": 
-      "override": 
-        - echo "done"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
