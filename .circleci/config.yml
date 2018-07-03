@@ -25,10 +25,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: test:
-  override:
-    - echo "test"
-
+      - run: 
   deploy:
       docker:
         - image: circleci/node:8.11
