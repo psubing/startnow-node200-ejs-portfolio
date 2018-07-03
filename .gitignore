@@ -1,0 +1,6 @@
+sendgrid.env
+sendgrid.env
+*.log
+.vscode
+DS_Store
+node_modules
