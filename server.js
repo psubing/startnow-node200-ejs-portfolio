@@ -1,11 +1,8 @@
 const express = require('express'); //565.6K (gzipped: 165.2K)
 const morgan = require('morgan'); //38.3K (gzipped: 12.6K)
 const bodyParser = require('body-parser'); //747.5K (gzipped: 256.1K)
+require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
-//SENDGRID_API_KEY='JWYycTyhRPSQFb63qmY8CA';
-//var profile = require('./profile');
-// var contact = require('./contact.ejs');
-// var thanks = require('./thanks.ejs');
 
 const app = express();
 
@@ -37,31 +34,8 @@ app.get('/', (req, res) => {
     res.render('index', data);
 });
 
-// app.get('/', (req, res) => {
-//     //const sgMail = require('@sendgrid/mail')
-//     sendgrid.send({
-//         to: 'psubing@gmail.com',
-//         from: 'test@example.com',
-//         subject: 'Sending with SendGrid is Fun',
-//         text: 'and easy to do anywhere, even with Node.js'
-//     }, function (err, json) {
-//         if (err) { return res.send(err); }
-//         res.render('contact');
-//     })
-// })
-
 app.get('/contact', (req, res) => {
     res.render('contact');
-    // const sgMail = require('@sendgrid/mail')
-    // sendgrid.send({
-    //     to: 'psubing@gmail.com',
-    //     from: 'test@example.com',
-    //     subject: 'Sending with SendGrid is Fun',
-    //     text: 'and easy to do anywhere, even with Node.js'
-    // }, function (err, json) {
-    //     if (err) { return res.send(err); }
-    //     res.render('contact');
-    // })
 });
 
 app.get('/about', (req, res) => {
@@ -73,10 +47,9 @@ app.get('/projects', (req, res) => {
 });
 
 app.post('/thanks', (req, res) => {
-    sgMail.setApiKey('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');
-    console.log(process.env.SENDGRID_API_KEY)
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-        to: 'psubing@gmail.com',
+        to: process.env.PORTFOLIO_EMAIL,
         from: req.body.email,
         subject: 'Sending with SendGrid is Fun',
         text: 'Name: ' + req.body.firstName + ' ' + req.body.lastName + '; E-mail: ' + req.body.email,
@@ -90,8 +63,8 @@ app.post('/thanks', (req, res) => {
     res.render('thanks', { contact: req.body })
 });
 
-//app.use('/profile', profile)
-
 app.listen(8080, () => {
     console.log('listening at http://localhost:8080');
 });
+
+module.exports = app;
