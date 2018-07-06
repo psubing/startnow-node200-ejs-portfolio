@@ -5,6 +5,7 @@ const server = require('../server.js');
 chai.use(chaiHttp);
 const expect = chai.expect;
 
+server.listen(4444);
 
 describe('loads successfully', function() {
   this.timeout(5000);
