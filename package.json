@@ -4,7 +4,7 @@
   "description": "My personal portfolio",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "mocha tests/*.spec.js --exit"
   },
   "repository": {
     "type": "git",
